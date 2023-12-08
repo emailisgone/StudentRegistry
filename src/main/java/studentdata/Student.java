@@ -2,10 +2,9 @@ package studentdata;
 
 public class Student {
     private String fullName;
-    private int age;
-    private Gender gender;
-    private String major;
-    private Group group;
+    private Major major;
+    private int groupNr;
+    private int courseNr;
 
     public String getFullName() {
         return fullName;
@@ -15,52 +14,39 @@ public class Student {
         this.fullName = fullName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        if(age<0) throw new IllegalArgumentException("Student's age cannot be a negative number.");
-        this.age = age;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public String getMajor() {
+    public Major getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(Major major) {
         this.major = major;
     }
 
-    public Group getGroup() {
-        return group;
+    public int getGroupNr() {
+        return groupNr;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroupNr(int groupNr) {
+        this.groupNr = groupNr;
     }
 
     Student(){
         this.setFullName("");
-        this.setAge(0);
-        this.setGender(Gender.PLACEHOLDER);
-        this.setGroup(new Group());
-        this.setMajor("");
+        this.setGroupNr(0);
+        this.setMajor(null);
     }
 
-    Student(String fullName, int age, Gender gender, Group group, String major){
+    Student(String fullName, int groupNr, Major major){
         this.setFullName(fullName);
-        this.setAge(age);
-        this.setGroup(group);
-        this.setGender(gender);
+        this.setGroupNr(groupNr);
         this.setMajor(major);
+    }
+
+    public int getCourseNr() {
+        return courseNr;
+    }
+
+    public void setCourseNr(int courseNr) {
+        this.courseNr = courseNr;
     }
 }
