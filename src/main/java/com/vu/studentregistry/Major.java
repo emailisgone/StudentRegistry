@@ -1,4 +1,4 @@
-package studentdata;
+package com.vu.studentregistry;
 
 public enum Major {
     COMPUTER_SCIENCE,

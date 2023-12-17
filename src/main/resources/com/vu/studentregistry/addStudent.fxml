@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:controller="com.vu.studentregistry.AddStudentController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="328.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/">
+   <children>
+      <Label layoutX="83.0" layoutY="14.0" text="Student Registration">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="145.0" layoutY="54.0" text="Name">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <TextField fx:id="name" layoutX="69.0" layoutY="75.0" prefHeight="25.0" prefWidth="190.0" />
+      <Label layoutX="136.0" layoutY="117.0" text="Specialty">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <ComboBox fx:id="specialty" layoutX="69.0" layoutY="138.0" prefHeight="26.0" prefWidth="190.0" />
+      <Spinner fx:id="course" layoutX="70.0" layoutY="205.0" prefHeight="26.0" prefWidth="81.0" />
+      <Spinner fx:id="group" layoutX="179.0" layoutY="205.0" prefHeight="26.0" prefWidth="81.0" />
+      <Label layoutX="83.0" layoutY="185.0" text="Course">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label layoutX="194.0" layoutY="185.0" text="Group">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Button fx:id="addStudentButton" layoutX="134.0" layoutY="254.0" mnemonicParsing="false" text="Register" />
+   </children>
+</AnchorPane>

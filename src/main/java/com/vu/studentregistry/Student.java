@@ -1,4 +1,4 @@
-package studentdata;
+package com.vu.studentregistry;
 
 public class Student {
     private String fullName;
@@ -30,14 +30,9 @@ public class Student {
         this.groupNr = groupNr;
     }
 
-    Student(){
-        this.setFullName("");
-        this.setGroupNr(0);
-        this.setMajor(null);
-    }
-
-    Student(String fullName, int groupNr, Major major){
+    public Student(String fullName, Major major, int courseNr, int groupNr){
         this.setFullName(fullName);
+        this.setCourseNr(courseNr);
         this.setGroupNr(groupNr);
         this.setMajor(major);
     }
