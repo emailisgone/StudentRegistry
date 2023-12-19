@@ -26,7 +26,6 @@ public class ModifyStudentController implements Initializable {
 
         addStudentButton.setOnAction(e -> checkCredentials());
         addStudentButton.setText("Modify");
-
     }
     public void setStudent(Student student) {
         this.student = student;

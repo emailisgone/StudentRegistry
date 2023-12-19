@@ -4,6 +4,7 @@ module com.vu.studentregistry {
     requires org.apache.commons.csv;
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
+    requires itextpdf;
 
 
     opens com.vu.studentregistry to javafx.fxml;

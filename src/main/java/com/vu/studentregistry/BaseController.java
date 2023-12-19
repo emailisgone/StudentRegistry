@@ -38,6 +38,7 @@ public class BaseController implements Initializable {
     @FXML private CheckBox noCourseCheck;
     @FXML private CheckBox noGroupCheck;
     @FXML private CheckBox noMajorCheck;
+    @FXML private Button attManageButton;
 
     private final ObservableList<Student> studentData = FXCollections.observableArrayList();
 
@@ -130,7 +131,7 @@ public class BaseController implements Initializable {
                 FileHandler fileHandler = getFileHandler(file);
                 if (fileHandler != null) {
                     try {
-                        fileHandler.save(new ArrayList<>(studentData), file);
+                        fileHandler.save(new ArrayList<>(studentTableView.getItems()), file);
                     } catch (IOException ex) {
                         CustomError.customError("Error saving file.");
                     }
@@ -142,20 +143,27 @@ public class BaseController implements Initializable {
             ObservableList<Student> filteredData = FXCollections.observableArrayList();
             for (Student student : studentData) {
                 Major major = noMajorCheck.isSelected() ? null : majorFilterComboBox.getValue();
-                int groupNr = noGroupCheck.isSelected() ? 0 : groupNrFilterSpinner.getValue();
-                int courseNr = noCourseCheck.isSelected() ? 0 : courseNrFilterSpinner.getValue();
+                Integer groupNr = noGroupCheck.isSelected() ? null : groupNrFilterSpinner.getValue();
+                Integer courseNr = noCourseCheck.isSelected() ? null : courseNrFilterSpinner.getValue();
                 if ((major == null || student.getMajor() == major) &&
-                        (groupNr == 0 || student.getGroupNr() == groupNr) &&
-                        (courseNr == 0 || student.getCourseNr() == courseNr)) {
+                        (groupNr == null || student.getGroupNr() == groupNr) &&
+                        (courseNr == null || student.getCourseNr() == courseNr)) {
                     filteredData.add(student);
                 }
             }
             studentTableView.setItems(filteredData);
         });
 
-
         resetFiltersButton.setOnAction(e -> {
             studentTableView.setItems(studentData);
+        });
+
+        attManageButton.setOnAction(e -> {
+            try {
+                manageAttendance();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
     }
     private FileHandler getFileHandler(File file) {
@@ -221,5 +229,22 @@ public class BaseController implements Initializable {
 
     private void updateTableView(){
         studentTableView.setItems(studentData);
+    }
+
+    private void manageAttendance() throws IOException{
+        Student selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
+        if (selectedStudent != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("attWindow.fxml"));
+            Parent root = loader.load();
+            StudentAttendanceController controller = loader.getController();
+            controller.setStudent(selectedStudent);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Student Attendance");
+            stage.setResizable(false);
+            stage.showAndWait();
+        } else {
+            CustomError.customError("Please select a student from the table.");
+        }
     }
 }
